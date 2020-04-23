@@ -8,24 +8,27 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.andrade.cliente.InicialController">
    <children>
-      <Label contentDisplay="CENTER" layoutX="257.0" layoutY="3.0" prefHeight="40.0" prefWidth="75.0" style="-fx-text-alignment: center;" text="Cliente" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" layoutX="228.0" layoutY="2.0" prefHeight="40.0" prefWidth="75.0" style="-fx-text-alignment: center;" text="Cliente" textAlignment="CENTER">
          <font>
             <Font name="Century Gothic" size="18.0" />
          </font>
       </Label>
-      <Line endX="471.99993896484375" layoutX="115.0" layoutY="47.0" startX="-115.0" />
+      <Line endX="386.5" layoutX="115.0" layoutY="47.0" startX="-107.0" />
       <Label layoutX="7.0" layoutY="58.0" prefHeight="17.0" prefWidth="44.0" text="Server:" />
-      <Label layoutX="267.0" layoutY="58.0" prefHeight="17.0" prefWidth="33.0" text="Port:" />
-      <TextField layoutX="67.0" layoutY="54.0" prefHeight="25.0" prefWidth="193.0" />
-      <TextField layoutX="300.0" layoutY="54.0" prefHeight="25.0" prefWidth="75.0" />
-      <Label layoutX="7.0" layoutY="93.0" prefHeight="17.0" prefWidth="60.0" text="Message:" />
-      <TextField layoutX="67.0" layoutY="93.0" prefHeight="25.0" prefWidth="508.0" />
-      <Label layoutX="7.0" layoutY="151.0" prefHeight="17.0" prefWidth="60.0" text="Response" />
-      <TextArea layoutX="7.0" layoutY="172.0" prefHeight="228.0" prefWidth="569.0" />
-      <Button fx:id="btnEnviar" layoutX="512.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Enviar">
+      <Label layoutX="275.0" layoutY="58.0" prefHeight="17.0" prefWidth="33.0" text="Porta:" />
+      <TextField fx:id="txtfServer" layoutX="75.0" layoutY="54.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="txtfPorta" layoutX="310.0" layoutY="54.0" prefHeight="25.0" prefWidth="75.0" />
+      <Label layoutX="7.0" layoutY="97.0" prefHeight="17.0" prefWidth="68.0" text="Mensagem:" />
+      <TextField fx:id="txtfMensagem" layoutX="76.0" layoutY="93.0" prefHeight="25.0" prefWidth="309.0" />
+      <TextArea fx:id="txtaResposta" disable="true" layoutX="7.0" layoutY="128.0" prefHeight="244.0" prefWidth="496.0" />
+      <Button fx:id="btnEnviar" layoutX="393.0" layoutY="93.0" mnemonicParsing="false" onMouseClicked="#btnEnviarClicked" prefHeight="25.0" prefWidth="109.0" text="Enviar">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnConectar" layoutX="393.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#btnConectarClicked" prefHeight="25.0" prefWidth="109.0" text="Conectar">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
