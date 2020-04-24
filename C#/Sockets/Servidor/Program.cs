@@ -31,39 +31,46 @@ namespace Servidor
                 // Especifica o tamanho da fila de espera, se passar de 10 responderá como ocupado
                 listener.Listen(10);
 
-                Console.WriteLine("Aguardando por conexões...");
-
-                // Aceita a conexão do cliente com o servidor
-                Socket client = listener.Accept();
-
                 // Dados recebidos do cliente
-                string dados = null;
+                string mensagem = null;
 
-                // Número de bytes que será recuperado, número bairro propositalmente para ver na recuperação dos bytes o loop
-                byte[] bytesRecebidos = new byte[256];
-                int bytes;
+                Socket client = null;
 
-                // Enquanto o servidor tiver bytes para mandar leia
-                do
+                while (mensagem != "Fechar")
                 {
-                    // recuperando bytes do servidor
-                    bytes = client.Receive(bytesRecebidos, bytesRecebidos.Length, 0);
+                    mensagem = string.Empty;
+                    Console.WriteLine("Aguardando por conexões...");
 
-                    // convertendo bytes recuperados do servidor
-                    dados += Encoding.ASCII.GetString(bytesRecebidos, 0, bytes);
-                } while (client.Available > 0);
+                    // Aceita a conexão do cliente com o servidor
+                    client = listener.Accept();
 
-                // Mostra no console dados mandados pelo cliente conectado
-                Console.WriteLine(dados);
+                    // Número de bytes que será recuperado, número bairro propositalmente para ver na recuperação dos bytes o loop
+                    byte[] bytesRecebidos = new byte[256];
+                    int bytes;
 
-                // Mensagem a ser retornada para o cliente
-                string msgRetorno = "SERVIDOR: Dados recebidos e processados...";
+                    // Enquanto o servidor tiver bytes para mandar leia
+                    do
+                    {
+                        // recuperando bytes do servidor
+                        bytes = client.Receive(bytesRecebidos, bytesRecebidos.Length, 0);
 
-                // Mensagem de retorno sendo convertida para byte array
-                byte[] msg = Encoding.ASCII.GetBytes(msgRetorno);
+                        // convertendo bytes recuperados do servidor
+                        mensagem += Encoding.ASCII.GetString(bytesRecebidos, 0, bytes);
+                    } while (client.Available > 0);
 
-                // Enviando resposta devolta ao cliente
-                client.Send(msg);
+                    // Mostra no console dados mandados pelo cliente conectado
+                    Console.WriteLine("CLIENTE: " + mensagem);
+
+                    // Mensagem a ser retornada para o cliente
+                    string msgRetorno = "SERVIDOR: Dados recebidos e processados...";
+
+                    // Mensagem de retorno sendo convertida para byte array
+                    byte[] msg = Encoding.ASCII.GetBytes(msgRetorno);
+
+                    // Enviando resposta devolta ao cliente
+                    client.Send(msg);
+                }
+                Console.WriteLine("Finalizando o servidor...");
 
                 // Desliga conexão
                 client.Shutdown(SocketShutdown.Both);
@@ -71,8 +78,7 @@ namespace Servidor
                 // Fecha conexão
                 client.Close();
 
-                Console.WriteLine("Finalizando o servidor...");
-
+                Console.WriteLine("[ Ok ]");
             }
             catch (Exception e)
             {

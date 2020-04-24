@@ -35,7 +35,7 @@ namespace Sockets
             richTextBox1.AppendText("CLIENTE: Socket conectado com: " + socket.RemoteEndPoint.ToString());
 
             // Encode texto digitado na tela em byte array    
-            byte[] msg = Encoding.ASCII.GetBytes("CLIENTE: " + txtBMensagem.Text);
+            byte[] msg = Encoding.ASCII.GetBytes(txtBMensagem.Text);
 
             // Enviar os dados pelo socket   
             int numeroBytesEnviados = socket.Send(msg);            
